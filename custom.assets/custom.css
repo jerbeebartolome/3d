@@ -86,10 +86,14 @@ header {
   border-radius: 4px;
   padding: 10px 20px;
   margin: 5px;
-}s
+}
 
-.navbar .nav-link.active,
 .navbar .nav-link:hover {
+  background: #fcc100;
+  color: #ffffff;
+}
+
+.navigation-wrap .navbar .nav-link.active {
   background: #fcc100;
   color: #ffffff;
 }
@@ -425,6 +429,10 @@ section {
   outline: none;
 }
 
+#portfolio-form-status {
+  margin: 25px 0;
+  color: #747474;
+}
 
 #form-button {
   color: #ffffff;
