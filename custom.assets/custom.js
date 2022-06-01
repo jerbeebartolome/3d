@@ -1,6 +1,7 @@
+// Adding class for stying fixed navigation
 window.addEventListener('DOMContentLoaded', event => {
     var navbarScroll = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
+        const navbarCollapsible = document.body.querySelector('.navigation-wrap');
         if (!navbarCollapsible) {
             return;
         }
@@ -18,30 +19,36 @@ window.addEventListener('DOMContentLoaded', event => {
     document.addEventListener('scroll', navbarScroll);
 });
 
+// Smooth Scrolling for browsers who does not support CSS scroll-behavior
 $(document).ready(function() {
-    $('.nav-link').bind('click', function(e) {
-            e.preventDefault();
+    $('.nav-link').bind('click', function(a) {
+            a.preventDefault();
 
             var target = $(this).attr("href");
 
             $('html, body').stop().animate({
-                    scrollTop: $(target).offset().top
+                scrollTop: $(target).offset().top
             }, 300, function() {
-                    location.hash = target;
+                location.hash = target;
             });
 
             return false;
     });
+
+    // BOOTSTRAP ScrollSpy
+    $("#sectionSpy a").on('click', function(event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          var hash = this.hash;
+    
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 300, function(){
+       
+            window.location.hash = hash;
+          });
+        }
+      });
 });
 
-$(window).scroll(function() {
-    var scrollDistance = $(window).scrollTop();
-
-    // Add an active class to nav links when scolling
-    $('.page-section').each(function(i) {
-            if ($(this).position().top <= scrollDistance) {
-                $('.navbar .navbar-nav a.active').removeClass('active');
-                $('.navbar .navbar-nav a').eq(i).addClass('active');
-            }
-    });
-}).scroll();
